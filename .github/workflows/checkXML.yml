@@ -17,8 +17,8 @@ jobs:
         
     - name: Check for track trending enabled
       run: |
-        while read -r file; do
-          echo "$file"
-        done <<< "$FILES"
+        for file in $FILES
+          echo "- $file"
+        done
                         
       
