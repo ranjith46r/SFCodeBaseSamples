@@ -10,6 +10,6 @@
     <relationshipLabel>KYC Fraud</relationshipLabel>
     <relationshipName>KYC_Fraud</relationshipName>
     <required>false</required>
-    <trackTrending>false</trackTrending>
+    <trackTrending>true</trackTrending>
     <type>Lookup</type>
 </CustomField>
