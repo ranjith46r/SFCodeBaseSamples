@@ -19,3 +19,12 @@ jobs:
                --header 'content-type: application/json' | jq -r '.[] | .filename')
         
         echo "$FILES"
+        
+        if [ echo $FILES | grep -q ".xml"; ]
+        then
+          echo "XML Files found"
+          echo exit 1
+        else
+          echo "XML Files Not found
+          echo exit 0
+        fi
