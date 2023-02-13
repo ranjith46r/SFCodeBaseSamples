@@ -19,7 +19,7 @@ jobs:
         
     - name: Check for track trending enabled
       run: |
-        for file in $(echo "${{ steps.changed_files.outputs.files }}"; do
+        for file in $(echo "${{ steps.changed_files.outputs.files }}"); do
           echo "- $file"
         done
                         
