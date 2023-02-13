@@ -26,5 +26,9 @@ jobs:
           exit 0
         else
           echo "XML Files Not found"
-          exit 1
+          exit 0
         fi
+        
+        for changed_file in ${{ steps.files.outputs.all }}; do
+          echo "Do something with this ${changed_file}."
+        done
