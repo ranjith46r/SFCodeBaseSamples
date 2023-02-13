@@ -13,7 +13,6 @@ jobs:
         echo "running.."
         echo ${{ github.repository }}
         echo ${{ github.event.pull_request.number }}
-        echo ${{ steps.files.outputs.all }}
         
         URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
         FILES=$(curl -s -X GET -G $URL --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
@@ -29,7 +28,3 @@ jobs:
           echo "XML Files Not found"
           exit 0
         fi
-        
-        for changed_file in ${{ steps.files.outputs.all }}; do
-          echo "Do something with this ${changed_file}."
-        done
