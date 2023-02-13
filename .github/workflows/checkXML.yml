@@ -20,7 +20,7 @@ jobs:
         
         echo "$FILES"
         
-        xmlfiles = echo $FILES | grep ".xml"
+        xmlfiles=(echo $FILES | grep ".xml")
         
         echo "$xmlfiles"
         
