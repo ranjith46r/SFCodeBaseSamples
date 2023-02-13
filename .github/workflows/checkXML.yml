@@ -1,14 +1,14 @@
-name: Check XML Files
+name: Check TrackTrending Enabled in Objects
 on:
   pull_request:
     branches:
     - 'main'
 jobs:
-  build:
+  Fetch-and-check-the-files:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Check meta-xmls
+    - name: Fetch all xml files
       run: |
         echo "running.."
         echo ${{ github.repository }}
@@ -19,12 +19,15 @@ jobs:
                --header 'content-type: application/json' | jq '.[] | select(.filename | endswith(".xml")) | .filename')
         
         echo "$FILES"
+        
+    - name: Check for track trending enabled
+      run: |
+        while read -r file ; do
+          if grep -q "<trackTrending>true</trackTrending>" "$file"; then
+            echo "$file contains trackTrending as enabled"
+          else
+            echo "$file does not contain trackTrending as enabled"
+          fi
+        done <<< "$FILES"
                         
-        if [ echo $FILES | grep ".xml"; ]
-        then
-          echo "XML Files found"
-          exit 0
-        else
-          echo "XML Files Not found"
-          exit 0
-        fi
+      
