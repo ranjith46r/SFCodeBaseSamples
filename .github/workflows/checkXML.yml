@@ -1,27 +1,26 @@
-name: Check TrackTrending Enabled in Objects
+name: Check TrackTrending Enabled in Object Fields
 on:
   pull_request:
     branches:
     - 'main'
 jobs:
-  Fetch-and-check-the-files:
+  Fetch-meta-xml-files:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Fetch all xml files
-      id: changed_files
+    - name: Fetch all field meta xml files
+      id: xml_files
       run: |
         URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
         FILES=$(curl -s -X GET -G $URL --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-               --header 'content-type: application/json' | jq '.[] | select(.filename | endswith(".xml")) | .filename')
+               --header 'content-type: application/json' | jq '.[] | select(.filename | endswith("field-meta.xml")) | .filename')
         echo "$FILES"
         echo "files=$(echo $FILES)" >> $GITHUB_OUTPUT
         
     - name: Check for track trending enabled
       run: |
         filesFound="false"
-        for file in $(echo "${{ steps.changed_files.outputs.files }}"); do
-          echo "- $file"
+        for file in $(echo "${{ steps.xml_files.outputs.files }}"); do
           if grep -i "<trackTrending>true</trackTrending>" $file;
           then
             filesFound="true"
@@ -30,10 +29,8 @@ jobs:
         done
         if [ $filesFound == "true" ]
         then
-          echo "Please disable trackTrending from the meta files"
+          echo "PLEASE DISABLE TRACK TRENDING FROM META-XML FILES"
           exit 1
         else
           exit 0
         fi
-                        
-      
