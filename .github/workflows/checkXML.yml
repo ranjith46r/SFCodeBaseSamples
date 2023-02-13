@@ -11,3 +11,4 @@ jobs:
     - name: Check meta-xmls
       run: |
         echo "running.."
+        echo ${{ github.repository }}
