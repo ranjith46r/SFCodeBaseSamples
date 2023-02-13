@@ -1,13 +1,13 @@
-name: CI
+name: Check XML Files
 on:
   pull_request:
-    branches: [ "main" ]
-  
-  workflow_dispatch:
-  
+    branches:
+    - 'main'
 jobs:
   build:
     runs-on: ubuntu-latest
-  steps:
-    - name: Run a one-line script
-       run: echo Hello, world!
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check meta-xmls
+      run: |
+        echo "running.."
