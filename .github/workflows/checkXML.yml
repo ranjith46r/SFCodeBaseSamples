@@ -20,7 +20,7 @@ jobs:
         
         echo "$FILES"
         
-        if [ echo $FILES | grep -q ".xml"; ]
+        if [ echo $FILES | grep ".xml"; ]
         then
           echo "XML Files found"
           exit 0
