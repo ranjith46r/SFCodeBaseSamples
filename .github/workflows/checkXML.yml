@@ -9,15 +9,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Fetch all xml files
+      id: changed_files
       run: |
         URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
         FILES=$(curl -s -X GET -G $URL --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
                --header 'content-type: application/json' | jq '.[] | select(.filename | endswith(".xml")) | .filename')
         echo "$FILES"
+        echo "::set-output name=files::$(echo $FILES)"
         
     - name: Check for track trending enabled
       run: |
-        for file in "$FILES"; do
+        for file in $(echo "${{ steps.changed_files.outputs.files }}"; do
           echo "- $file"
         done
                         
