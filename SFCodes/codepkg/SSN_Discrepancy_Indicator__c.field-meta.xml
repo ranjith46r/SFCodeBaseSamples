@@ -6,6 +6,6 @@
     <externalId>false</externalId>
     <inlineHelpText>This field represent the presence of a discrepancy with the SSN</inlineHelpText>
     <label>SSN Discrepancy Indicator</label>
-    <trackTrending>true</trackTrending>
+    <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>
