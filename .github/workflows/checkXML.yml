@@ -21,7 +21,7 @@ jobs:
       run: |
         for file in $(echo "${{ steps.changed_files.outputs.files }}"); do
           echo "- $file"
-          if grep -Fq "<trackTrending>false</trackTrending>" $file;
+          if grep -i "<trackTrending>false</trackTrending>" $file;
           then
             echo "found in $file"
           else
