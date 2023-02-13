@@ -5,7 +5,7 @@ public class SampleDeployClass {
         helloMethod();
 
         Account acc = new Account(Name= 'fred');
-        insert acc; // hit the trigger..........!!!!!
+        insert acc; // hit the trigger..........!!!!!!
         //Commited from 
         //ant deploy and jenkins
         
