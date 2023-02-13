@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SSN_Discrepancy_Indicator__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field represent the presence of a discrepancy with the SSN</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field represent the presence of a discrepancy with the SSN</inlineHelpText>
+    <label>SSN Discrepancy Indicator</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
