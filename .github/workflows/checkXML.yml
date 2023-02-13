@@ -23,8 +23,9 @@ jobs:
     - name: Check for track trending enabled
       run: |
         while read -r file ; do
-          if grep -q "<trackTrending>true</trackTrending>" "$file"; then
+          if grep -q "<trackTrending>false</trackTrending>" "$file"; then
             echo "$file contains trackTrending as enabled"
+            exit 1
           else
             echo "$file does not contain trackTrending as enabled"
           fi
